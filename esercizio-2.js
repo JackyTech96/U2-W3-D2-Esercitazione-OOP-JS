@@ -10,7 +10,7 @@ window.onload = () => {
     const breed = document.getElementById("breed").value;
 
     const registration = new Registration(petName, ownerName, species, breed);
-    generateCard(registration);
+    generateList(registration);
   });
 };
 
@@ -28,24 +28,23 @@ class Registration {
   }
 }
 
-function generateCard(registration) {
-  const cardsContainer = document.getElementById("cards");
+function generateList(registration) {
+  const listContainer = document.getElementById("list");
+  const ul = document.createElement("ul");
+  ul.classList.add("list-group");
 
-  const cardHTML = `
-      <div class="col">
-        <div class="card text-white bg-primary mb-3">
-          <div class="card-body">
-          <h4>Registrazio completata!</4>
-          <hr class="mt-1">
-            <h6 class="card-title mb-3">${registration.petName}</h6>
-            <h6 class="card-subtitle mb-3 text-white">${registration.ownerName}</h6>
-            <p class="card-text">
-              Species: ${registration.species}</p>
-             <p class="card-text"> Breed: ${registration.breed}</p>
-          </div>
-        </div>
-      </div>
+  const li = document.createElement("li");
+  li.classList.add("list-group-item");
+
+  const registrationInfo = `
+      <h4>Registrazione completata!</h4>
+      <h6 class="mb-2">${registration.petName}</h6>
+      <p class="mb-1">Owner: ${registration.ownerName}</p>
+      <p class="mb-1">Species: ${registration.species}</p>
+      <p class="mb-1">Breed: ${registration.breed}</p>
     `;
 
-  cardsContainer.insertAdjacentHTML("beforeend", cardHTML);
+  li.innerHTML = registrationInfo;
+  ul.appendChild(li);
+  listContainer.appendChild(ul);
 }

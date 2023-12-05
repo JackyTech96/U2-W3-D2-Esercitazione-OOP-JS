@@ -33,6 +33,7 @@ function generateList(registration) {
 
   const li = document.createElement("li");
   li.classList.add("list-group-item");
+  li.classList.add("mb-3");
 
   const registrationInfo = `          
               <h4 class="mb-3">Registrazione completata!</h4>

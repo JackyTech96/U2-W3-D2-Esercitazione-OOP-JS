@@ -21,6 +21,11 @@ class Registration {
     this.species = species;
     this.breed = breed;
   }
+  sameOwner(otherUser) {
+    if (this.ownerName === otherUser.ownerName) {
+      console.log(true);
+    }
+  }
 }
 
 function generateCard(registration) {

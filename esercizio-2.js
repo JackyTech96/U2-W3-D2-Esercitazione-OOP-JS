@@ -22,9 +22,7 @@ class Registration {
     this.breed = breed;
   }
   sameOwner(otherUser) {
-    if (this.ownerName === otherUser.ownerName) {
-      console.log(true);
-    }
+    return this.ownerName === otherUser.ownerName;
   }
 }
 
@@ -36,15 +34,22 @@ function generateList(registration) {
   const li = document.createElement("li");
   li.classList.add("list-group-item");
 
-  const registrationInfo = `
-      <h4>Registrazione completata!</h4>
-      <h6 class="mb-2">${registration.petName}</h6>
-      <p class="mb-1">Owner: ${registration.ownerName}</p>
-      <p class="mb-1">Species: ${registration.species}</p>
-      <p class="mb-1">Breed: ${registration.breed}</p>
+  const registrationInfo = `          
+              <h4 class="mb-3">Registrazione completata!</h4>
+                <div class="d-flex align-items-baseline">
+                    <p class="pe-3 mb-0"><span class="fw-bold">Name</span>: ${registration.petName}</p>
+                    <p class="pe-3 mb-0"><span class="fw-bold">Owner</span>: ${registration.ownerName}</p>
+                    <p class="pe-3 mb-0"><span class="fw-bold">Species</span>: ${registration.species}</p>
+                    <p class="pe-3 mb-0"><span class="fw-bold">Breed</span>: ${registration.breed}</p>
+                    <button onclick="deleteList(event)" class="btn btn-light">❌</button>
+                </div> 
     `;
 
   li.innerHTML = registrationInfo;
   ul.appendChild(li);
   listContainer.appendChild(ul);
 }
+const deleteList = (event) => {
+  const listItem = event.target.closest(".list-group-item");
+  listItem.parentNode.remove();
+};
